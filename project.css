@@ -1,0 +1,15 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.nav-links{
+    box-shadow: 0 5px 10px rgba(236,173,72,0.5);
+    
+}
+a:active{
+  color  : orange;
+}
+
+
+
+

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us</title>
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="project.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Maps&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+    
+    <div class="box-border">
+        <!-- photo nav -->
+        <nav class="bg-white bg-no-repeat bg-cover">
+          <div class="relative flex justify-center h-[200px]">
+            <img src="./images/NAVLOGO-removebg-preview.png" width="1080px" alt="Logo">
+          </div>
+        </nav>
+    
+        <!-- nav 2 -->
+        <nav class="bg-grayText nav-links">
+          <div class="relative w-[1080px] mx-auto">
+            <!-- Hamburger Icon for Small Screens -->
+            <div class="sm:hidden">
+              <button id="toggle-menu" class="text-white font-mullish py-4 px-2 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+              </button>
+            </div>
+    
+            <!-- Navigation Links -->
+            <ul class="hidden sm:flex flex-row justify-evenly">
+              <li class="text-white font-mullish py-7 hover:text-lightBlue lead cursor-pointer transition-all duration-200 relative group">
+                <a href="./index.html">Home</a>
+                <div class="absolute bottom-0 w-full hidden h-1 bg-lightBlue group-hover:block transition-all duration-200"></div>
+              </li>
+              <li class="text-white font-mullish py-7
+              hover:text-lightBlue cursor-pointer transition-all
+               duration-200 relative group">
+             <a href="./index2.html">Academics</a>
+             <div class="absolute bottom-0 w-full hidden h-1 bg-lightBlue group-hover:block transition-all
+             duration-200"></div>
+     
+             </li>
+             <li class="text-white font-mullish py-7
+              hover:text-lightBlue cursor-pointer transition-all
+               duration-200 relative group">
+             <a href="./activity.html">Activity</a>
+             <div class="absolute bottom-0 w-full hidden h-1 bg-lightBlue group-hover:block transition-all
+             duration-200"></div>
+     
+             </li>
+             <li class="text-white font-mullish py-7
+              hover:text-lightBlue cursor-pointer transition-all
+               duration-200 relative group">
+             <a href="./about.html">About</a>
+             <div class="absolute bottom-0 w-full hidden h-1 bg-lightBlue group-hover:block transition-all
+             duration-200"></div>
+     
+             </li>
+             <li class="text-white font-mullish py-7
+              hover:text-lightBlue cursor-pointer transition-all
+               duration-200 relative group">
+             <a href="./gallery.html">Gallery</a>
+             <div class="absolute bottom-0 w-full hidden h-1 bg-lightBlue group-hover:block transition-all
+             duration-200"></div>
+     
+             </li>
+             <li class="text-white font-mullish py-7
+              hover:text-lightBlue cursor-pointer transition-all
+               duration-200 relative group">
+             <a href="./contact.html">Contact Us</a>
+             <div class="absolute bottom-0 w-full hidden h-1 bg-lightBlue group-hover:block transition-all
+             duration-200"></div>
+     
+             </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    
+      <!-- Toggle Menu for Small Screens -->
+      <script>
+      document.getElementById('toggle-menu').addEventListener('click', function () {
+        const navLinks = document.querySelector('.nav-links ul');
+        navLinks.classList.toggle('hidden');
+    
+        // Toggle active class for hamburger icon
+        this.classList.toggle('active');
+      });
+    
+      // Hide nav links when a link is clicked
+      const navItems = document.querySelectorAll('.nav-links ul li');
+      navItems.forEach(item => {
+        item.addEventListener('click', function () {
+          const navLinks = document.querySelector('.nav-links ul');
+          navLinks.classList.add('hidden');
+    
+          // Remove active class from hamburger icon when a link is clicked
+          document.getElementById('toggle-menu').classList.remove('active');
+        });
+      });
+      </script>
+<div class="quote shadow">
+    <h1 class="text-center pt-2 quote-heading "> 
+        तमसो मा ज्योतिर्गमय</h1>
+
+</div>
+
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-12 col-md-4  img-container">
+                    <img src="Images/principal.jpg" alt="imagecard" class="img-size img-fluid">
+                    <h3 class="heading ">The principal</h3>
+                     </div>
+
+                <div class="col-12 col-md-8  para-container shadow">
+                    <h6>OUR STORY</h6>
+                    <p class="paragraph">
+                        Dream India Schools (DIS), an initiative to provide quality English medium technology-led education, conquering the twin challenges of Accessibility & Affordability.
+
+                       Many parents, due to constraints of Accessibility and Affordability.</br>
+                       <br>
+                  fail to provide their children the much deserved quality education. <br>
+                  <br>
+                  DIS thus makes the pedestal for every such parent in fulfilling their most important part of parenting responsibility. By establishing schools in small towns and semi-urban areas, DIS has become a trail blazing pioneer of quality education.
+
+                    What’s next? The more and the best is yet to come!
+                    </p>
+                    <h6>
+                        VISION
+                    </h6>
+                    <br>
+                    <p class="paragraph">
+                       
+                    </p>
+                    <br>
+                    <h6>
+                        MISSION
+                    </h6>
+                    <p class="paragraph">
+                        Our mission is to make our school a caring and welcoming place where every student can do their best in studies, make friends, and feel good about themselves. <br> <br> We want to help kids love learning by teaching them not just academic stuff, but also how to think, be creative, and understand their own culture. Besides classrooms, we also want to teach values like respect and responsibility. <br> <br> Our lessons will include the rich traditions of India and also show how we're all part of a big world. We want our students to grow up as kind and smart people who can make the world a better place.
+                    </p>
+                </div>
+
+            
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class=" col-12 pt-4">
+                    <img src="aboutusimage.png" alt="" class="img3 img-fluid">
+                </div>
+
+            </div>
+        </div>
+
+
+      
+
+        
+        <footer class="bg-gray-800 text-white">
+            <div class="container mx-auto py-5">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center md:text-left">
+                        <img src="./images/footerimg.png" class="mx-auto md:mx-0 w-24 h-24" alt="Logo">
+                        <div class="flex space-x-5 justify-center md:justify-start mt-4">
+                            <div class="follow-us-icon-container">
+                                <i class="fab fa-google icon"></i>
+                            </div>
+                            <div class="follow-us-icon-container">
+                                <i class="fab fa-twitter icon"></i>
+                            </div>
+                            <div class="follow-us-icon-container">
+                                <i class="fab fa-instagram icon"></i>
+                            </div>
+                            <div class="follow-us-icon-container">
+                                <i class="fab fa-linkedin icon"></i>
+                            </div>
+                        </div>
+                        <div class="text-center md:text-left mt-4">
+                            <p>Bariyarpur, Munger, BIHAR <br> 811211</p>
+                        </div>
+                    </div>
+        
+                    <div class="mt-3">
+                        <h1 class="text-xl font-bold pb-2">Contact us</h1>
+                        <ul class="list-disc ml-4">
+                            <li class="mb-1">
+                                <i class="far fa-envelope mr-2"></i>
+                                <span class="text-gray-300">paramountchildrencentre0@gmail.com</span>
+                            </li>
+                            <li class="mb-1">
+                                <i class="fas fa-phone mr-2"></i>
+                                <span class="text-gray-300">+919430662666</span>
+                            </li>
+                        </ul>
+                    </div>
+        
+                    <div class="mt-3">
+                        <h1 class="text-xl font-bold pb-3">Let us Help You</h1>
+                        <ul class="list-disc ml-4">
+                            <li><a href="#" class="text-gray-300">HOME</a></li>
+                            <li><a href="#" class="text-gray-300">About us</a></li>
+                            <li><a href="#" class="text-gray-300">Gallery</a></li>
+                            <li><a href="#" class="text-gray-300">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+        
+                <hr class="my-5 border-t border-gray-600"/>
+        
+                <div class="text-center">
+                    <span class="text-gray-300">Copyrights © 2024 Paramount Children centre | All Rights Reserved.</span>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <h6><a href="#" class="text-gray-300">Contact Developer</a></h6>
+                    <a href="#" class="text-gray-300"><i class="fab fa-github icon-color"></i></a> 
+                    <a href="mailto:yashaswiraj1212@gmail.com" class="ml-2"><i class="far fa-envelope icon-color"></i></a>
+                    <a href="mailto:yashaswiraj1212@gmail.com" class="ml-1"><i class="fab fa-linkedin icon-color"></i></a>
+                </div>
+            </div>
+        </footer>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://kit.fontawesome.com/d1c2ea8b80.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/8c57e8fd5d.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Maps&display=swap" rel="stylesheet">
+  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <container>
+    <style>
+        * {
+    box-sizing: border-box;
+    margin: 10px;
+    padding: 5px;
+  }
+  
+  body {
+    margin: 5px;
+    position: relative;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(100, 131, 159, 0.51) 0%, rgba(103, 56, 96, 0.51) 90% );
+  }
+  .head{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Rubik Maps', system-ui;
+    font-size: xx-large;
+    
+  }
+  h1 {
+    font-size: 72px;
+    background: -webkit-linear-gradient(#ff0000, #ff9900af);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  #gallery {
+    display: flex;
+    
+    /* height: calc(100vh - 10px); */
+    /* grid-template: repeat(10, 1fr);
+    grid-gap: 1em; */
+  }
+  @media (max-width: 602px) {
+    #gallery {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #gallery > div {
+      width: 48%;
+      margin: 1%;
+    }
+  }
+  @media (max-width: 602px) and (max-width: 600px) {
+    #gallery > div {
+      width: 98%;
+    }
+  }
+  #gallery > div:nth-child(6n+1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  #gallery > div:nth-child(2) {
+    grid-column: span 3;
+    grid-row: span 3;
+  }
+  #gallery > div:nth-child(4) {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+  #gallery > div > a {
+    opacity: 0;
+    position: absolute;
+    color: #000;
+    background-color: #000;
+    font: bold 3em "Helvetica";
+    text-shadow: 0 -1px 5px #fff, -1px 0px 5px #fff, 0 1px 5px #fff, 1px 0px 5px #fff;
+    padding: 2rem;
+    mix-blend-mode: difference;
+    width: 100%;
+    height: 100%;
+    transition: all ease 1s;
+  }
+  #gallery > div > img {
+    width: 100%;
+    min-height: 100%;
+    transition: all ease 1s;
+  }
+  #gallery > div:hover img {
+    filter: blur(1px);
+  }
+  #gallery > div:hover a {
+    opacity: 1;
+  }
+  #gallery > div {
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  #gallery div,
+  #gallery a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  [id^=lightbox-] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    opacity: 0;
+    transition: opacity 450ms ease-in-out;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+  [id^=lightbox-]:target {
+    opacity: 1;
+    pointer-events: inherit;
+  }
+  [id^=lightbox-]:target img {
+    filter: blur(0);
+  }
+  [id^=lightbox-] .content {
+    max-width: 90%;
+    position: relative;
+    color: #fff;
+  }
+  [id^=lightbox-] .content:hover > a.close {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+  [id^=lightbox-] .content:hover > .title {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+  [id^=lightbox-] .content:hover > .title::after {
+    opacity: 1;
+  }
+  [id^=lightbox-] .content > * {
+    transition: all 450ms ease-in-out;
+  }
+  [id^=lightbox-] .title {
+    display: block;
+    margin: 0;
+    padding: 1em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transform: translateY(50%);
+    font-size: 1.5em;
+    opacity: 0;
+  }
+  [id^=lightbox-] .title::after {
+    content: " ";
+    background-color: rgba(0, 0, 0, 0.4);
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    transition: all 350ms ease-in-out 250ms;
+    opacity: 0;
+    transform-origin: bottom;
+    mix-blend-mode: soft-light;
+  }
+  [id^=lightbox-] img {
+    max-height: 90vh;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    filter: blur(50px);
+  }
+  [id^=lightbox-] a.close {
+    width: 2em;
+    height: 2em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0, 0);
+    opacity: 0;
+    transform-origin: right top;
+    text-decoration: none;
+    color: #fff;
+  }
+  [id^=lightbox-] a.close::after {
+    content: "X";
+  }
+
+  #gallery2 {
+    display: flex;
+    
+    /* height: calc(100vh - 10px); */
+    /* grid-template: repeat(10, 1fr);
+    grid-gap: 1em; */
+  }
+  @media (max-width: 602px) {
+    #gallery2 {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #gallery2 > div {
+      width: 48%;
+      margin: 1%;
+    }
+  }
+  @media (max-width: 602px) and (max-width: 600px) {
+    #gallery2 > div {
+      width: 98%;
+    }
+  }
+  #gallery2 > div:nth-child(6n+1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  #gallery2 > div:nth-child(2) {
+    grid-column: span 3;
+    grid-row: span 3;
+  }
+  #gallery2 > div:nth-child(4) {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+  #gallery2 > div > a {
+    opacity: 0;
+    position: absolute;
+    color: #000;
+    background-color: #000;
+    font: bold 3em "Helvetica";
+    text-shadow: 0 -1px 5px #fff, -1px 0px 5px #fff, 0 1px 5px #fff, 1px 0px 5px #fff;
+    padding: 2rem;
+    mix-blend-mode: difference;
+    width: 100%;
+    height: 100%;
+    transition: all ease 1s;
+  }
+  #gallery2 > div > img {
+    width: 100%;
+    min-height: 100%;
+    transition: all ease 1s;
+  }
+  #gallery2 > div:hover img {
+    filter: blur(1px);
+  }
+  #gallery2 > div:hover a {
+    opacity: 1;
+  }
+  #gallery2 > div {
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  #gallery2 div,
+  #gallery2 a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  #gallery3 {
+    display: flex;
+    
+    /* height: calc(100vh - 10px); */
+    /* grid-template: repeat(10, 1fr);
+    grid-gap: 1em; */
+  }
+  @media (max-width: 602px) {
+    #gallery3 {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #gallery3 > div {
+      width: 48%;
+      margin: 1%;
+    }
+  }
+  @media (max-width: 602px) and (max-width: 600px) {
+    #gallery3 > div {
+      width: 98%;
+    }
+  }
+  #gallery3 > div:nth-child(6n+1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  #gallery3 > div:nth-child(2) {
+    grid-column: span 3;
+    grid-row: span 3;
+  }
+  #gallery3 > div:nth-child(4) {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+  #gallery3 > div > a {
+    opacity: 0;
+    position: absolute;
+    color: #000;
+    background-color: #000;
+    font: bold 3em "Helvetica";
+    text-shadow: 0 -1px 5px #fff, -1px 0px 5px #fff, 0 1px 5px #fff, 1px 0px 5px #fff;
+    padding: 2rem;
+    mix-blend-mode: difference;
+    width: 100%;
+    height: 100%;
+    transition: all ease 1s;
+  }
+  #gallery3 > div > img {
+    width: 100%;
+    min-height: 100%;
+    transition: all ease 1s;
+  }
+  #gallery3 > div:hover img {
+    filter: blur(1px);
+  }
+  #gallery3 > div:hover a {
+    opacity: 1;
+  }
+  #gallery3 > div {
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  #gallery3 div,
+  #gallery3 a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+  #gallery4 {
+    display: flex;
+    
+    /* height: calc(100vh - 10px); */
+    /* grid-template: repeat(10, 1fr);
+    grid-gap: 1em; */
+  }
+  @media (max-width: 602px) {
+    #gallery4 {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #gallery4 > div {
+      width: 48%;
+      margin: 1%;
+    }
+  }
+  @media (max-width: 602px) and (max-width: 600px) {
+    #gallery4 > div {
+      width: 98%;
+    }
+  }
+  #gallery4 > div:nth-child(6n+1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  #gallery4 > div:nth-child(2) {
+    grid-column: span 3;
+    grid-row: span 3;
+  }
+  #gallery4 > div:nth-child(4) {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+  #gallery4 > div > a {
+    opacity: 0;
+    position: absolute;
+    color: #000;
+    background-color: #000;
+    font: bold 4em "Helvetica";
+    text-shadow: 0 -1px 5px #fff, -1px 0px 5px #fff, 0 1px 5px #fff, 1px 0px 5px #fff;
+    padding: 2rem;
+    mix-blend-mode: difference;
+    width: 100%;
+    height: 100%;
+    transition: all ease 1s;
+  }
+  #gallery4 > div > img {
+    width: 100%;
+    min-height: 100%;
+    transition: all ease 1s;
+  }
+  #gallery4 > div:hover img {
+    filter: blur(1px);
+  }
+  #gallery4 > div:hover a {
+    opacity: 1;
+  }
+  #gallery4 > div {
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  #gallery4 div,
+  #gallery4 a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+  #gallery5 {
+    display: flex;
+    
+    /* height: calc(100vh - 10px); */
+    /* grid-template: repeat(10, 1fr);
+    grid-gap: 1em; */
+  }
+  @media (max-width: 602px) {
+    #gallery5 {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #gallery5 > div {
+      width: 48%;
+      margin: 1%;
+    }
+  }
+  @media (max-width: 602px) and (max-width: 600px) {
+    #gallery5 > div {
+      width: 98%;
+    }
+  }
+  #gallery5 > div:nth-child(6n+1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  #gallery5 > div:nth-child(2) {
+    grid-column: span 3;
+    grid-row: span 3;
+  }
+  #gallery5 > div:nth-child(4) {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+  #gallery5 > div > a {
+    opacity: 0;
+    position: absolute;
+    color: #000;
+    background-color: #000;
+    font: bold 3em "Helvetica";
+    text-shadow: 0 -1px 5px #fff, -1px 0px 5px #fff, 0 1px 5px #fff, 1px 0px 5px #fff;
+    padding: 2rem;
+    mix-blend-mode: difference;
+    width: 100%;
+    height: 100%;
+    transition: all ease 1s;
+  }
+  #gallery5 > div > img {
+    width: 100%;
+    min-height: 100%;
+    transition: all ease 1s;
+  }
+  #gallery5 > div:hover img {
+    filter: blur(1px);
+  }
+  #gallery5 > div:hover a {
+    opacity: 1;
+  }
+  #gallery5 > div {
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  #gallery5 div,
+  #gallery5 a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+  #gallery6 {
+    display: flex;
+    
+    /* height: calc(100vh - 10px); */
+    /* grid-template: repeat(10, 1fr);
+    grid-gap: 1em; */
+  }
+  @media (max-width: 602px) {
+    #gallery6 {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #gallery6 > div {
+      width: 48%;
+      margin: 1%;
+    }
+  }
+  @media (max-width: 602px) and (max-width:600px) {
+    #gallery6 > div {
+      width: 98%;
+    }
+  }
+  #gallery6 > div:nth-child(6n+1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  #gallery6 > div:nth-child(2) {
+    grid-column: span 3;
+    grid-row: span 3;
+  }
+  #gallery6 > div:nth-child(4) {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+  #gallery6 > div > a {
+    opacity: 0;
+    position: absolute;
+    color: #000;
+    background-color: #000;
+    font: bold 3em "Helvetica";
+    text-shadow: 0 -1px 5px #fff, -1px 0px 5px #fff, 0 1px 5px #fff, 1px 0px 5px #fff;
+    padding: 2rem;
+    mix-blend-mode: difference;
+    width: 100%;
+    height: 100%;
+    transition: all ease 1s;
+  }
+  #gallery6 > div > img {
+    width: 100%;
+    min-height: 100%;
+    transition: all ease 1s;
+  }
+  #gallery6 > div:hover img {
+    filter: blur(1px);
+  }
+  #gallery6 > div:hover a {
+    opacity: 1;
+  }
+  #gallery6 > div {
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  #gallery6 div,
+  #gallery6 a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  #gallery7 {
+    display: flex;
+    
+    /* height: calc(100vh - 10px); */
+    /* grid-template: repeat(10, 1fr);
+    grid-gap: 1em; */
+  }
+  @media (max-width: 602px) {
+    #gallery7 {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #gallery7 > div {
+      width: 48%;
+      margin: 1%;
+    }
+  }
+  @media (max-width: 602px) and (max-width: 600px) {
+    #gallery7 > div {
+      width: 98%;
+    }
+  }
+  #gallery7 > div:nth-child(6n+1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  #gallery7 > div:nth-child(2) {
+    grid-column: span 3;
+    grid-row: span 3;
+  }
+  #gallery7 > div:nth-child(4) {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+  #gallery7 > div > a {
+    opacity: 0;
+    position: absolute;
+    color: #000;
+    background-color: #000;
+    font: bold 3em "Helvetica";
+    text-shadow: 0 -1px 5px #fff, -1px 0px 5px #fff, 0 1px 5px #fff, 1px 0px 5px #fff;
+    padding: 2rem;
+    mix-blend-mode: difference;
+    width: 100%;
+    height: 100%;
+    transition: all ease 1s;
+  }
+  #gallery7 > div > img {
+    width: 100%;
+    min-height: 100%;
+    transition: all ease 1s;
+  }
+  #gallery7 > div:hover img {
+    filter: blur(1px);
+  }
+  #gallery7 > div:hover a {
+    opacity: 1;
+  }
+  #gallery7 > div {
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  #gallery7 div,
+  #gallery7 a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  #gallery8 {
+    display: flex;
+    
+    /* height: calc(100vh - 10px); */
+    /* grid-template: repeat(10, 1fr);
+    grid-gap: 1em; */
+  }
+  @media (max-width: 602px) {
+    #gallery8 {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #gallery8 > div {
+      width: 48%;
+      margin: 1%;
+    }
+  }
+  @media (max-width: 602px) and (max-width: 600px) {
+    #gallery8 > div {
+      width: 98%;
+    }
+  }
+  #gallery8 > div:nth-child(6n+1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  #gallery8 > div:nth-child(2) {
+    grid-column: span 3;
+    grid-row: span 3;
+  }
+  #gallery8 > div:nth-child(4) {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+  #gallery8 > div > a {
+    opacity: 0;
+    position: absolute;
+    color: #000;
+    background-color: #000;
+    font: bold 3em "Helvetica";
+    text-shadow: 0 -1px 5px #fff, -1px 0px 5px #fff, 0 1px 5px #fff, 1px 0px 5px #fff;
+    padding: 2rem;
+    mix-blend-mode: difference;
+    width: 100%;
+    height: 100%;
+    transition: all ease 1s;
+  }
+  #gallery8 > div > img {
+    width: 100%;
+    min-height: 100%;
+    transition: all ease 1s;
+  }
+  #gallery8 > div:hover img {
+    filter: blur(1px);
+  }
+  #gallery8 > div:hover a {
+    opacity: 1;
+  }
+  #gallery8 > div {
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  #gallery8 div,
+  #gallery8 a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+  @media only screen and (max-width: 768px) {
+    .gallery-container > div {
+      width: 100%;
+    }
+  }
+  @media (max-width: 602px) {
+    .gallery-container > div {
+        width: 98%;
+    }
+}
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.gallery-container > div {
+  width: calc(33.333% - 20px); /* 33.333% to have 3 items in a row, subtracting margin */
+  margin: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.gallery-container > div > a {
+  opacity: 0;
+  position: absolute;
+  color: #000;
+  background-color: #000;
+  font: bold 3em "Helvetica";
+  text-shadow: 0 -1px 5px #fff, -1px 0px 5px #fff, 0 1px 5px #fff, 1px 0px 5px #fff;
+  padding: 2rem;
+  mix-blend-mode: difference;
+  width: 100%;
+  height: 100%;
+  transition: all ease 1s;
+}
+
+.gallery-container > div > img {
+  width: 100%;
+  height: 100%;
+  min-height: 200px; /* Set a fixed height for the images */
+  transition: all ease 1s;
+}
+
+.gallery-container > div:hover img {
+  filter: blur(1px);
+}
+
+.gallery-container > div:hover a {
+  opacity: 1;
+}
+
+.gallery-container div,
+.gallery-container a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .gallery-container > div {
+    width: 100%;
+  }
+}
+
+@media (max-width: 602px) {
+  .gallery-container > div {
+    width: 48%;
+    margin: 1%;
+  }
+}
+    </style>
+    <div class="head">
+        <h1>Hall Of Fame</h1>
+    </div>
+    
+<div id="gallery">
+    <div><img src="images/1.jpg"/><a href="#lightbox-1">1</a></div>
+    <!-- <div><img src="image/31.jpg"/><a href="#lightbox-31">31</a></div> -->
+    <div><img src="images/13.jpg"/><a href="#lightbox-2">15 August 2006</a></div>
+    <div><img src="images/3.jpg"/><a href="#lightbox-3">3</a></div>
+    <div><img src="images/4.jpg"/><a href="#lightbox-4">4</a></div>
+</div>
+<div id="gallery2">
+    <div><img src="images/5.jpg"/><a href="#lightbox-5">5</a></div>
+    <div><img src="images/2.jpg"/><a href="#lightbox-6">6</a></div>
+    <div><img src="images/7.jpg"/><a href="#lightbox-7">7</a></div>
+    <div><img src="images/8.jpg"/><a href="#lightbox-8">8</a></div>
+</div>
+<div id="gallery3">
+    <div><img src="images/9.jpg"/><a href="#lightbox-9">9</a></div>
+    <div><img src="images/10.jpg"/><a href="#lightbox-10">10</a></div>
+    <div><img src="images/11.jpg"/><a href="#lightbox-11">11</a></div>
+    <div><img src="images/12.jpg"/><a href="#lightbox-12">12</a></div>
+</div>
+<div id="gallery4">
+    <div><img src="images/6.jpg"/><a href="#lightbox-13">13</a></div>
+    <div><img src="images/14.jpg"/><a href="#lightbox-14">15 August 2006</a></div>
+    <div><img src="images/15.jpg"/><a href="#lightbox-15">15</a></div>
+    <div><img src="images/16.jpg"/><a href="#lightbox-16">16</a></div>
+</div>
+<div id="gallery5">
+    <div><img src="images/17.jpg"/><a href="#lightbox-17">17</a></div>
+    <div><img src="images/18.jpg"/><a href="#lightbox-18">18</a></div>
+    <div><img src="images/19.jpg"/><a href="#lightbox-19">19</a></div>
+    <div><img src="images/20.jpg"/><a href="#lightbox-20">20</a></div>
+</div>
+<div id="gallery6">
+    <div><img src="images/21.jpg"/><a href="#lightbox-21">21</a></div>
+    <div><img src="images/22.jpg"/><a href="#lightbox-22">22</a></div>
+    <div><img src="images/23.jpg"/><a href="#lightbox-23">23</a></div>
+    <div><img src="images/24.jpg"/><a href="#lightbox-24">24</a></div>
+</div>
+<div id="gallery7">
+    <div><img src="images/25.jpg"/><a href="#lightbox-25">25</a></div>
+    <div><img src="images/26.jpg"/><a href="#lightbox-26">26</a></div>
+    <div><img src="images/27.jpg"/><a href="#lightbox-27">27</a></div>
+    <div><img src="images/28.jpg"/><a href="#lightbox-28">Saraswati Puja</a></div>
+</div>
+<div id="gallery8">
+    <div><img src="images/29.jpg"/><a href="#lightbox-29">29</a></div>
+    <div><img src="images/30.jpg"/><a href="#lightbox-30">30</a></div>
+    <div><img src="images/31.jpg"/><a href="#lightbox-31">31</a></div>
+</div>
+    
+    
+    
+    
+</div>
+    <div class="lightbox" id="lightbox-1">
+        <div class="content"><img src="images/1.jpg"/>
+            <div class="title">No. <b>512</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-2">
+        <div class="content"><img src="images/13.jpg"/>
+            <div class="title"> *<b>15/08/2006</b> Independence Day </div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-3">
+    <div class="content"><img src="images/3.jpg"/>
+        <div class="title">No. <b>514</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-4">
+        <div class="content"><img src="images/4.jpg"/>
+            <div class="title">No. <b>515</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-5">
+        <div class="content"><img src="images/5.jpg"/>
+            <div class="title">No. <b>516</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-6">
+        <div class="content"><img src="images/2.jpg"/>
+            <div class="title">No. <b>517</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-7">
+        <div class="content"><img src="images/7.jpg"/>
+            <div class="title">No. <b>518</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-8">
+        <div class="content"><img src="images/8.jpg"/>
+            <div class="title">No. <b>519</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-9">
+        <div class="content"><img src="images/9.jpg"/>
+            <div class="title">No. <b>520</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-10">
+        <div class="content"><img src="images/10.jpg"/>
+            <div class="title">No. <b>521</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-11">
+        <div class="content"><img src="images/11.jpg"/>
+            <div class="title">No. <b>522</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-12">
+        <div class="content"><img src="images/12.jpg"/>
+            <div class="title">No. <b>523</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-13">
+        <div class="content"><img src="images/6.jpg"/>
+            <div class="title">No. <b>524</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-14">
+        <div class="content"><img src="images/14.jpg"/>
+            <div class="title">* <b>15/08/2006</b>One of alumnus participate on occasion of Independence Day</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-15">
+        <div class="content"><img src="images/15.jpg"/>
+            <div class="title">No. <b>526</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-16">
+        <div class="content"><img src="images/16.jpg"/>
+            <div class="title">No. <b>527</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-17">
+        <div class="content"><img src="images/17.jpg"/>
+            <div class="title">No. <b>528</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-18">
+        <div class="content"><img src="images/18.jpg"/>
+            <div class="title">No. </div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-19">
+        <div class="content"><img src="images/19.jpg"/>
+            <div class="title">No. </div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-20">
+        <div class="content"><img src="images/20.jpg"/>
+            <div class="title">No. </div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-21">
+        <div class="content"><img src="images/21.jpg"/>
+            <div class="title">No.</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-22">
+        <div class="content"><img src="images/22.jpg"/>
+            <div class="title">No. <b>529</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    
+    <div class="lightbox" id="lightbox-23">
+        <div class="content"><img src="images/23.jpg"/>
+            <div class="title">No. </div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-24">
+        <div class="content"><img src="images/24.jpg"/>
+            <div class="title">No. </div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-24">
+        <div class="content"><img src="images/24.jpg"/>
+            <div class="title">No. </div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-25">
+        <div class="content"><img src="images/25.jpg"/>
+            <div class="title">No. </div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-26">
+        <div class="content"><img src="images/26.jpg"/>
+            <div class="title">No. </div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-26">
+        <div class="content"><img src="images/26.jpg"/>
+            <div class="title">No. </div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-27">
+        <div class="content"><img src="images/27.jpg"/>
+            <div class="title">No. </div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-28">
+        <div class="content"><img src="images/28.jpg"/>
+            <div class="title">* <b></b> Saraswati Puja</div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-29">
+        <div class="content"><img src="images/29.jpg"/>
+            <div class="title">No. </div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <div class="lightbox" id="lightbox-30">
+        <div class="content"><img src="images/30.jpg"/>
+            <div class="title">No. </div><a class="close" href="#gallery"></a>
+        </div>
+    </div>
+    <!-- <div class="lightbox" id="lightbox-31">
+        <div class="content"><img src="image/31.jpg"/>
+            <div class="title">No. <b>529</b> from Picsum</div><a class="close" href="#gallery"></a>
+        </div> -->
+    </div>
+</container>
+<footer class="bg-gray-800 text-white">
+  <div class="container mx-auto py-5">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center md:text-left">
+              <img src="./images/footerimg.png" class="mx-auto md:mx-0 w-24 h-24" alt="Logo">
+              <div class="flex justify-center md:justify-start mt-4">
+                  <div class="follow-us-icon-container">
+                      <i class="fab fa-google icon"></i>
+                  </div>
+                  <div class="follow-us-icon-container">
+                      <i class="fab fa-twitter icon"></i>
+                  </div>
+                  <div class="follow-us-icon-container">
+                      <i class="fab fa-instagram icon"></i>
+                  </div>
+                  <div class="follow-us-icon-container">
+                      <i class="fab fa-linkedin icon"></i>
+                  </div>
+              </div>
+              <div class="text-center md:text-left mt-4">
+                  <p>Bariyarpur, Munger, BIHAR <br> 811211</p>
+              </div>
+          </div>
+
+          <div class="mt-3">
+              <h1 class="text-xl font-bold pb-2">Contact us</h1>
+              <ul class="list-disc ml-4">
+                  <li class="mb-1">
+                      <i class="far fa-envelope mr-2"></i>
+                      <span class="text-gray-300">paramountchildrencentre0@gmail.com</span>
+                  </li>
+                  <li class="mb-1">
+                      <i class="fas fa-phone mr-2"></i>
+                      <span class="text-gray-300">+919430662666</span>
+                  </li>
+              </ul>
+          </div>
+
+          <div class="mt-3">
+              <h1 class="text-xl font-bold pb-3">Let us Help You</h1>
+              <ul class="list-disc ml-4">
+                  <li><a href="#" class="text-gray-300">HOME</a></li>
+                  <li><a href="#" class="text-gray-300">About us</a></li>
+                  <li><a href="#" class="text-gray-300">Gallery</a></li>
+                  <li><a href="#" class="text-gray-300">FAQ</a></li>
+              </ul>
+          </div>
+      </div>
+
+      <hr class="my-5 border-t border-gray-600"/>
+
+      <div class="text-center">
+          <span class="text-gray-300">Copyrights © 2024 Paramount Children centre | All Rights Reserved.</span>
+      </div>
+      
+      <div class="text-center mt-4">
+          <h6><a href="#" class="text-gray-300">Contact Developer</a></h6>
+          <a href="#" class="text-gray-300"><i class="fab fa-github icon-color"></i></a> 
+          <a href="mailto:yashaswiraj1212@gmail.com" class="ml-2"><i class="far fa-envelope icon-color"></i></a>
+          <a href="mailto:yashaswiraj1212@gmail.com" class="ml-1"><i class="fab fa-linkedin icon-color"></i></a>
+      </div>
+  </div>
+</footer>
+
+</body>
+</html>
